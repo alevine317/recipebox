@@ -1,0 +1,28 @@
+<!-- <h1>Hello People of Earth</h1> -->
+{% load static %}
+<html>
+
+<head>
+    <title>RecipeBox</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/recipe.css' %}">
+</head>
+
+<body>
+    {% for recipe in list %}
+    <li>
+        <a href="recipes/{{ recipe.id }}">{{ recipe.title }}</a>
+    </li>
+    {% endfor %}
+    {% if request.user.is_authenticated %}
+    <a href="/addrecipe/"><button>Add a Recipe</button></a>
+    <a href="/addauthor/"><button>Add an Author</button></a>
+    <a href="/logout/"><button>Logout</button></a>
+    {% else %}
+    <a href="/signup/"><button>Signup</button></a>
+    <a href="/login/"><button>Login</button></a>
+    {% endif %}
+</body>
+
+</html>
